@@ -1,141 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
+  <meta charset="utf-8">
+  <title>Apptest .draggable()</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <link rel="stylesheet" href="jquery-ui.min.css">
+    <script  type="text/javascript" src="jquery-2.1.3.min.js"></script>
+    <script  type="text/javascript" src="jquery-ui.min.js"></script>
+    <script  type="text/javascript" src="jquery.ui.touch-punch.min.js"></script>
+   
 
-    <title>Testing bootstrap as phonegap app</title>
+  
+    <style>
+        #draggable1 { width: 100px; height: 100px; padding: 0.5em; background-color: red; z-index:1; }
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+        #draggable2 { width: 100px; height: 100px; top:25px; left:25px; padding: 0.5em; background-color: blue;  z-index:2; }
 
-    <!-- Custom CSS -->
-    <link href="css/portfolio-item.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-                    <script>
-                        var audio1 = new Audio('audio/1.mp3');
-                        var audio2 = new Audio('audio/2.mp3');
-                        var audio3 = new Audio('audio/1.mp3');
-                        var audio4 = new Audio('audio/4.mp3');
-
-                        function playaudio1() {
-                            audio1.play()
-                        }
-                        function playaudio2() {
-                            audio2.play()
-                        }
-                        function playaudio3() {
-                            audio3.play()
-                        }
-                        function playaudio4() {
-                            audio4.play()
-                        }
-
-            </script>
+    </style>
 
 </head>
-
 <body>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Testing Bootstrap</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="linkOne.html">A link</a>
-                    </li>
-                    <li>
-                        <a href="linkTwo.html">Another link</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-
-        <!-- Related Projects Row -->
-        <div class="row">
-
-            <div class="col-lg-12">
-                <h3 class="page-header"Min app</h3>
-            </div>
-
-            <div class="col-md-3 col-sm-6 col-xs-12">
  
-                    <img class="img-responsive portfolio-item" onclick="playaudio1();" src="img/dog.jpg" alt="">
-
-            </div>
-
-            <div class="col-md-3 col-sm-6 col-xs-12">
-
-                    <img class="img-responsive portfolio-item" onclick="playaudio2();" src="img/lion.jpg" alt="">
-
-            </div>
-
-            <div class="col-md-3 col-sm-6 col-xs-12">
-
-                    <img class="img-responsive portfolio-item" onclick="playaudio3();" src="img/bird.jpg" alt="">
-
-            </div>
-
-            <div class="col-md-3 col-sm-6 col-xs-12">
-
-                    <img class="img-responsive portfolio-item" onclick="playaudio4();" src="img/bear.jpg" alt="">
- 
-            </div>
-
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Test app</p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </footer>
-
+    <div id="draggable1" class="ui-widget-content">
+      <p>Div 1</p>
     </div>
-    <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-
-
+    <div id="draggable2" class="ui-widget-content">
+        <p>Div 2</p>
+    </div>
+ 
+ 
 </body>
+
+      <script>
+
+          $(function () {
+              $("#draggable1").draggable({
+                  start: function () {
+
+                      if (this.id == "draggable1") {
+                          $("#draggable2").zIndex(1);
+                          $("#draggable1").zIndex(2);
+                      }
+                      else {
+                          $("#draggable1").zIndex(1);
+                          $("#draggable2").zIndex(2);
+                      }
+                  },
+                  //drag: function () {
+                  //    $(this).effect("shake");
+                  //},
+                  //stop: function () {
+                  //    $(this).stop();
+                  //}
+              });
+
+
+              $("#draggable2").draggable({
+                  start: function () {
+
+                      if (this.id == "draggable1") {
+                          $("#draggable2").zIndex(1);
+                          $("#draggable1").zIndex(2);
+                      }
+                      else {
+                          $("#draggable1").zIndex(1);
+                          $("#draggable2").zIndex(2);
+                      }
+                  },
+                  //drag: function () {
+                  //    $(this).effect("shake");
+                  //},
+                  //stop: function () {
+                  //    $(this).stop();
+                  //}
+              });
+          });
+
+
+          //$("#draggable1").click(function () {
+          //    shakeMe(this);
+          //});
+
+          //$("#draggable1").focusout(function () {
+          //    restMe(this);
+          //});
+          //$("#draggable2").click(function () {
+          //    bounceMe(this);
+          //});
+
+          //$("#draggable2").focusout(function () {
+          //    restMe(this);
+          //});
+
+
+
+
+  </script>
 
 </html>
